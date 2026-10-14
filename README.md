@@ -31,11 +31,11 @@ To replace the character, put transparent PNGs in `assets/character/` and update
 - X or the on-screen **Dash** button: brief dash that breaks an obstacle
 - C or the on-screen **Shield** button: one five-second shield per run, blocks one collision
 - Escape: pause/resume; tab switch pauses automatically
-- The current project has no bundled soundtrack yet; add the licensed audio file under `assets/audio/` and wire it into the game when available.
+- The bundled soundtrack is `assets/audio/Lonely God - Marlboro Nights (Lyrics) - 7th Heaven.mp3.mpeg`. Browsers start it after the player clicks or taps Play, which satisfies autoplay restrictions.
 - Touch-friendly canvas and responsive phone/tablet layouts, with large on-screen action buttons
 - Best score saved in browser local storage, with fallback if storage is unavailable
 - Collision, progressive difficulty, collectibles, score HUD, birthday progress bar, restart and menu flow
-- Gameplay effects are silent
+- Gameplay effects are silent; the soundtrack loops at a moderate volume.
 
 ## Project structure
 
@@ -45,7 +45,7 @@ style.css
 game.js
 config/birthday_config.json
 assets/character/pose_1.png ... pose_4.png
-assets/audio/ (default soundtrack goes here)
+assets/audio/Lonely God - Marlboro Nights (Lyrics) - 7th Heaven.mp3.mpeg
 assets/backgrounds/  (reserved)
 assets/ui/           (reserved)
 ```
@@ -53,3 +53,4 @@ assets/ui/           (reserved)
 ## Verification notes
 
 Run the local server above and check the browser console/network panel for successful local asset/config requests. This environment did not have Pygame or Pygbag, so no Python or Pygbag build is included. Browser execution was not certified by an external browser test runner. Google Fonts has system-font fallbacks; the game itself and character art load from local files.
+
