@@ -8,6 +8,7 @@
   const palette={ink:'#513b49',pink:'#ed9db0',rose:'#df7794',cream:'#fff4e6',lav:'#b9add9',sage:'#94b99a',brown:'#896151',sky:'#f5cdd5'};
   let state='title',score=0,stars=0,hearts=0,best=Number(localStorage.getItem('campus-best')||0),elapsed=0,speed=330,groundY=420,spawn=0,itemSpawn=1.8,anim=0,world=0,particles=[],objects=[],toast='',toastT=0,celebrated=false;
   let player={x:144,y:groundY-75,w:68,h:75,vy:0,onGround:true,dash:0,shield:0,shieldUsed:false};
+  let soundtrack=null;
   const round=(x,y,w,h,r,fill,stroke)=>{ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}};
   function resize(){let dpr=Math.min(devicePixelRatio||1,2),r=canvas.getBoundingClientRect();canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0)}
   new ResizeObserver(resize).observe(canvas);resize();
@@ -31,7 +32,7 @@
   function heartPath(x,y,r){ctx.beginPath();ctx.moveTo(x,y+r*.85);ctx.bezierCurveTo(x-r*1.6,y-r*.1,x-r*.8,y-r*1.25,x,y-r*.48);ctx.bezierCurveTo(x+r*.8,y-r*1.25,x+r*1.6,y-r*.1,x,y+r*.85)}
   function drawObject(o){if(o.kind==='obstacle'){drawObstacle(o);return}let pulse=1+Math.sin(anim*5+o.y)*.08;ctx.save();ctx.translate(o.x+o.w/2,o.y+o.h/2);ctx.scale(pulse,pulse);if(o.type==='star'){ctx.fillStyle='#ffd56d';ctx.strokeStyle='#fff7cf';ctx.lineWidth=2;ctx.beginPath();for(let k=0;k<10;k++){let a=-Math.PI/2+k*Math.PI/5,r=k%2?8:17;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r)}ctx.closePath();ctx.fill();ctx.stroke()}else{heartPath(0,0,13);ctx.fillStyle='#ec82a1';ctx.fill();ctx.strokeStyle='#fff2f5';ctx.lineWidth=1.5;ctx.stroke()}ctx.restore()}
   function burst(x,y,color,n=12){for(let i=0;i<n;i++){let a=Math.random()*Math.PI*2,v=40+Math.random()*130;particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-30,t:.5+Math.random()*.55,color,size:2+Math.random()*4})}}
-  function start(){state='play';score=stars=hearts=elapsed=world=0;speed=330;spawn=.9;itemSpawn=1.4;objects=[];particles=[];celebrated=false;player.y=groundY-player.h;player.vy=0;player.onGround=true;player.dash=0;player.shield=0;player.shieldUsed=false}
+  function start(){state='play';score=stars=hearts=elapsed=world=0;speed=330;spawn=.9;itemSpawn=1.4;objects=[];particles=[];celebrated=false;player.y=groundY-player.h;player.vy=0;player.onGround=true;player.dash=0;player.shield=0;player.shieldUsed=false;if(!soundtrack){soundtrack=new Audio('assets/audio/Lonely%20God%20-%20Marlboro%20Nights%20(Lyrics)%20-%207th%20Heaven.mp3.mpeg');soundtrack.loop=true;soundtrack.volume=.38}soundtrack.play().catch(()=>{})}
   function jump(){if(state==='title'){start();return}if(state==='over'){start();return}if(state==='play'&&player.onGround){player.vy=-690;player.onGround=false}}
   function dash(){if(state==='play'&&player.dash<=0){player.dash=.48;burst(player.x,player.y+45,'#e7a4bc',8)}}
   function shield(){if(state==='play'&&!player.shieldUsed){player.shield=5;player.shieldUsed=true;burst(player.x+32,player.y+35,'#9ed2cb',15)}}
@@ -66,3 +67,4 @@
   document.querySelector('#shield-touch').addEventListener('pointerdown',e=>{e.preventDefault();shield()});
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='play')state='pause'});
 })();
+
