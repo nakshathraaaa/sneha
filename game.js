@@ -2,7 +2,7 @@
    stars +80, hearts +120. Collision and UI coordinates use a 960×540 world. */
 (() => {
   const W=960,H=540, canvas=document.querySelector('#game'),ctx=canvas.getContext('2d');
-  const cfg={recipient:'',birthday_title:'Happy Birthday!',headline:'YOU DID IT!',message:'3000 points of effort, and a little surprise just for you.',signoff:'Made with love, just for you. 💗',unlock_score:250};
+  const cfg={recipient:'',birthday_title:'Happy Birthday!',headline:'YOU DID IT!',message:'You survived assignments, exams, deadlines, and the absolute nonsense of college life. And somehow, you\'re still here. Happy Birthday, Sneha. Love you always. ❤️',signoff:'',unlock_score:250};
   fetch('config/birthday_config.json').then(r=>r.json()).then(x=>Object.assign(cfg,x)).catch(()=>{});
   const pics=['assets/character/pose_1.png','assets/character/pose_2.png','assets/character/pose_3.png','assets/character/pose_4.png'].map(src=>{let i=new Image();i.src=src;return i});
   const palette={ink:'#513b49',pink:'#ed9db0',rose:'#df7794',cream:'#fff4e6',lav:'#b9add9',sage:'#94b99a',brown:'#896151',sky:'#f5cdd5'};
