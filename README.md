@@ -31,7 +31,7 @@ To replace the character, put transparent PNGs in `assets/character/` and update
 - X or the on-screen **Dash** button: brief dash that breaks an obstacle
 - C or the on-screen **Shield** button: one five-second shield per run, blocks one collision
 - Escape: pause/resume; tab switch pauses automatically
-- The bundled soundtrack is `assets/audio/Lonely God - Marlboro Nights (Lyrics) - 7th Heaven.mp3.mpeg`. Browsers start it after the player clicks or taps Play, which satisfies autoplay restrictions.
+- The bundled soundtrack is `assets/audio/tiptoe.mpeg`. Browsers start it after the player clicks or taps Play, which satisfies autoplay restrictions.
 - Touch-friendly canvas and responsive phone/tablet layouts, with large on-screen action buttons
 - Best score saved in browser local storage, with fallback if storage is unavailable
 - Collision, progressive difficulty, collectibles, score HUD, birthday progress bar, restart and menu flow
@@ -45,7 +45,7 @@ style.css
 game.js
 config/birthday_config.json
 assets/character/pose_1.png ... pose_4.png
-assets/audio/Lonely God - Marlboro Nights (Lyrics) - 7th Heaven.mp3.mpeg
+assets/audio/tiptoe.mpeg
 assets/backgrounds/  (reserved)
 assets/ui/           (reserved)
 ```
